@@ -1,4 +1,6 @@
 .DS_Store
 .Trashes
 
+.env
+
 node_modules
