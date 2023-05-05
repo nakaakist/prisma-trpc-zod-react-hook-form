@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "nakaakist",
+  "license": "ISC",
+  "dependencies": {
+    "@trpc/server": "^10.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "eslint": "^8.38.0",
+    "prisma": "^4.13.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.2"
+  }
+}
