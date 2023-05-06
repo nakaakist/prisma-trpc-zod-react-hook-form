@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
@@ -22,14 +18,10 @@
     "noFallthroughCasesInSwitch": true,
     /* Use types and modules exported from server */
     "paths": {
-      "fromServer": [
-        "../server/src/forClient.ts"
-      ]
-    },
+      "fromServer": ["../server/src/forClient.ts"]
+    }
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.node.json"
