@@ -9,7 +9,8 @@
     "dev:db": "docker compose up -d",
     "dev:db:stop": "docker compose down",
     "build": "tsc",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "lint": "eslint"
   },
   "keywords": [],
   "author": "nakaakist",
@@ -23,6 +24,8 @@
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.38.0",
     "npm-run-all": "^4.1.5",
     "prisma": "^4.13.0",
