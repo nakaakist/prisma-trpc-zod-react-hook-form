@@ -7,7 +7,7 @@ const queryClient = new QueryClient();
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: "http://localhost:3333/trpc",
+      url: "http://localhost:3333",
     }),
   ],
 });
