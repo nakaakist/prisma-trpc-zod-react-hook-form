@@ -1,4 +1,4 @@
-import { t } from "../utils/trpc";
+import { t } from "src/utils/trpc";
 import { postRouter } from "./post";
 import { topicRouter } from "./topic";
 

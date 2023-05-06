@@ -7,7 +7,9 @@
     "dev": "run-p dev:* --print-label",
     "dev:server": "tsx watch ./src/server.ts",
     "dev:db": "docker compose up -d",
-    "dev:db:stop": "docker compose down"
+    "dev:db:stop": "docker compose down",
+    "build": "tsc",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [],
   "author": "nakaakist",
