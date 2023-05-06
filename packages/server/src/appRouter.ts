@@ -1,18 +1,17 @@
 import { initTRPC } from "@trpc/server";
-import { z } from "zod";
+import { CreatePostRequest } from "./validators";
 
 export const t = initTRPC.create();
 
 export const appRouter = t.router({
-  getPosts: t.procedure.input(z.string()).query((_req) => {
+  getPosts: t.procedure.query(() => {
     return [];
   }),
-  createPost: t.procedure
-    .input(z.object({ text: z.string().min(5) }))
-    .mutation(async (_req) => {
-      // use your ORM of choice
-      return null;
-    }),
+  createPost: t.procedure.input(CreatePostRequest).mutation(async (req) => {
+    console.log(req);
+    // use your ORM of choice
+    return null;
+  }),
 });
 
 // export type definition of API
