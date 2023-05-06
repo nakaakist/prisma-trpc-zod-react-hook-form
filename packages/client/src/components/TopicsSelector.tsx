@@ -7,7 +7,7 @@ export const TopicsSelector = <T extends FieldValues>({
   name: Path<T>;
   control: Control<T>;
 }) => {
-  const { field } = useController<T>({
+  useController<T>({
     name,
     control,
   });
