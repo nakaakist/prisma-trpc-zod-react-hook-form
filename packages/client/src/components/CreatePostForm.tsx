@@ -8,11 +8,13 @@ import { TopicsSelector } from "./TopicsSelector";
 type FormParams = z.infer<typeof validators.CreatePostRequest>;
 
 export const CreatePostForm = () => {
+  const utils = trpc.useContext();
   const postCreator = trpc.createPost.useMutation();
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     control,
     formState: { errors },
   } = useForm<FormParams>({
@@ -26,10 +28,18 @@ export const CreatePostForm = () => {
 
   const onSubmit = (data: FormParams) => {
     console.log(data);
-    postCreator.mutate({
-      ...data,
-      topicIds: [] as number[],
-    });
+    postCreator.mutate(
+      {
+        ...data,
+        topicIds: [] as number[],
+      },
+      {
+        onSuccess: () => {
+          reset();
+          utils.getPosts.invalidate();
+        },
+      }
+    );
   };
 
   return (

@@ -6,7 +6,7 @@ export const Page = () => {
 
   return (
     <div>
-      <p>{userQuery.data}</p>
+      <p>{JSON.stringify(userQuery.data)}</p>
       <CreatePostForm />
     </div>
   );
