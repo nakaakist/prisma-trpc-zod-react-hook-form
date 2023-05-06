@@ -4,12 +4,12 @@ import { z } from "zod";
 export const t = initTRPC.create();
 
 export const appRouter = t.router({
-  getPosts: t.procedure.input(z.string()).query((req) => {
+  getPosts: t.procedure.input(z.string()).query((_req) => {
     return [];
   }),
   createPost: t.procedure
     .input(z.object({ text: z.string().min(5) }))
-    .mutation(async (req) => {
+    .mutation(async (_req) => {
       // use your ORM of choice
       return null;
     }),
