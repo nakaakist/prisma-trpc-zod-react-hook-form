@@ -9,7 +9,7 @@ type FormParams = z.infer<typeof validators.CreatePostRequest>;
 
 export const CreatePostForm = () => {
   const utils = trpc.useContext();
-  const postCreator = trpc.createPost.useMutation();
+  const postCreator = trpc.post.create.useMutation();
   const {
     register,
     handleSubmit,
@@ -36,7 +36,7 @@ export const CreatePostForm = () => {
       {
         onSuccess: () => {
           reset();
-          utils.getPosts.invalidate();
+          utils.post.all.invalidate();
         },
       }
     );

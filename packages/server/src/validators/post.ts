@@ -1,13 +1,9 @@
 import { PostType } from "@prisma/client";
 import { z } from "zod";
+import { Topic } from "./topic";
 
 const SHORT_POST_MAX_LENGTH = 20;
 const LONG_POST_MAX_LENGTH = 100;
-
-export const Topic = z.object({
-  id: z.number(),
-  name: z.string(),
-});
 
 const refinePost = (p: { type: PostType; text: string }) => {
   if (p.type === PostType.SHORT) {
