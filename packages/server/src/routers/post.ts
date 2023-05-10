@@ -17,7 +17,10 @@ export const postRouter = t.router({
         text: input.text,
         type: input.type,
         topics: {
-          connect: input.topicIds.map((id) => ({ id })),
+          connectOrCreate: input.topics.map((topic) => ({
+            where: { name: topic },
+            create: { name: topic },
+          })),
         },
       },
     });

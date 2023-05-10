@@ -22,24 +22,18 @@ export const CreatePostForm = () => {
     defaultValues: {
       type: "SHORT",
       text: "",
-      topicIds: [],
+      topics: [],
     },
   });
 
   const onSubmit = (data: FormParams) => {
-    console.log(data);
-    postCreator.mutate(
-      {
-        ...data,
-        topicIds: [] as number[],
+    postCreator.mutate(data, {
+      onSuccess: () => {
+        reset();
+        utils.post.all.invalidate();
+        utils.topic.all.invalidate();
       },
-      {
-        onSuccess: () => {
-          reset();
-          utils.post.all.invalidate();
-        },
-      }
-    );
+    });
   };
 
   return (
@@ -75,9 +69,9 @@ export const CreatePostForm = () => {
         {errors.text?.message && <p>{errors.text?.message}</p>}
 
         <div>
-          <TopicsSelector name="topicIds" control={control} />
+          <TopicsSelector name="topics" control={control} />
         </div>
-        {errors.topicIds?.message && <p>{errors.topicIds?.message}</p>}
+        {errors.topics?.message && <p>{errors.topics?.message}</p>}
 
         <div>
           <input type="submit" />

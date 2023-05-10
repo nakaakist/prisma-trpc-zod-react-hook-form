@@ -39,6 +39,6 @@ export const CreatePostRequest = Post.omit({
   topics: true,
 })
   .extend({
-    topicIds: z.array(z.number()),
+    topics: z.array(z.string()),
   })
   .refine(refinePost, generateRefinePostParams);
