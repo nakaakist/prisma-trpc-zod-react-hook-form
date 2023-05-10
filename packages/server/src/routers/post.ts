@@ -8,6 +8,7 @@ export const postRouter = t.router({
       include: {
         topics: true,
       },
+      orderBy: { id: "desc" },
     });
     return result;
   }),
