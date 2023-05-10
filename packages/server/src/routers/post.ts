@@ -1,6 +1,6 @@
 import { prisma } from "src/utils/prisma";
 import { t } from "src/utils/trpc";
-import { CreatePostRequest } from "../schemas";
+import { CreatePostRequest, DeletePostRequest } from "../schemas";
 
 export const postRouter = t.router({
   all: t.procedure.query(async () => {
@@ -24,6 +24,12 @@ export const postRouter = t.router({
           })),
         },
       },
+    });
+    return result;
+  }),
+  delete: t.procedure.input(DeletePostRequest).mutation(async ({ input }) => {
+    const result = await prisma.post.delete({
+      where: { id: input.id },
     });
     return result;
   }),
