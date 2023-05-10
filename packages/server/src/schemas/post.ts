@@ -33,6 +33,7 @@ export const Post = z.object({
   text: z.string().min(5),
   topics: z.array(Topic),
 });
+export type Post = z.infer<typeof Post>;
 
 export const CreatePostRequest = Post.omit({
   id: true,
@@ -42,3 +43,4 @@ export const CreatePostRequest = Post.omit({
     topics: z.array(z.string()),
   })
   .refine(refinePost, generateRefinePostParams);
+export type CreatePostRequest = z.infer<typeof CreatePostRequest>;

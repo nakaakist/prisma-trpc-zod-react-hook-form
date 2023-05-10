@@ -1,11 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { validators } from "server";
+import { schemas } from "server";
 import { trpc } from "src/utils/trpc";
-import { z } from "zod";
 import { TopicsSelector } from "./TopicsSelector";
-
-type FormParams = z.infer<typeof validators.CreatePostRequest>;
 
 export const CreatePostForm = () => {
   const utils = trpc.useContext();
@@ -17,8 +14,8 @@ export const CreatePostForm = () => {
     reset,
     control,
     formState: { errors },
-  } = useForm<FormParams>({
-    resolver: zodResolver(validators.CreatePostRequest),
+  } = useForm<schemas.CreatePostRequest>({
+    resolver: zodResolver(schemas.CreatePostRequest),
     defaultValues: {
       type: "SHORT",
       text: "",
@@ -26,7 +23,7 @@ export const CreatePostForm = () => {
     },
   });
 
-  const onSubmit = (data: FormParams) => {
+  const onSubmit = (data: schemas.CreatePostRequest) => {
     postCreator.mutate(data, {
       onSuccess: () => {
         reset();

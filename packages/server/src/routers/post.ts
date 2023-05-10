@@ -1,6 +1,6 @@
 import { prisma } from "src/utils/prisma";
 import { t } from "src/utils/trpc";
-import { CreatePostRequest } from "src/validators";
+import { CreatePostRequest } from "../schemas";
 
 export const postRouter = t.router({
   all: t.procedure.query(async () => {
