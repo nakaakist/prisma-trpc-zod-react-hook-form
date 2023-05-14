@@ -1,8 +1,7 @@
 {
   "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.1",
   "scripts": {
     "dev": "run-p dev:* --print-label",
     "dev:server": "tsx watch ./src/server.ts",
