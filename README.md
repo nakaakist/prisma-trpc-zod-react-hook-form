@@ -42,4 +42,9 @@ pnpm dev
 
 ## Notes on the implementation
 
-TypeScript's [project reference](https://www.typescriptlang.org/docs/handbook/project-references.html) is used to reference the server's tRPC router types and Zod schemas from the client.
+The following codes are shared between the server and the client:
+
+- Zod schemas: used to validate API requests on the server and form inputs on the client.
+- tRPC route types: used to define API routes on the server and to set up tRPC on the client.
+
+To achieve this, the client employs TypeScript’s [project reference](https://www.typescriptlang.org/docs/handbook/project-references.html).
