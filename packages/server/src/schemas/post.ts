@@ -45,6 +45,15 @@ export const CreatePostRequest = Post.omit({
   .refine(refinePost, generateRefinePostParams);
 export type CreatePostRequest = z.infer<typeof CreatePostRequest>;
 
+export const UpdatePostRequest = Post.omit({
+  topics: true,
+})
+  .extend({
+    topics: z.array(z.string()),
+  })
+  .refine(refinePost, generateRefinePostParams);
+export type UpdatePostRequest = z.infer<typeof UpdatePostRequest>;
+
 export const DeletePostRequest = Post.pick({
   id: true,
 });

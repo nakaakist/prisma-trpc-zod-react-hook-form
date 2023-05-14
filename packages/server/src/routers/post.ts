@@ -1,6 +1,10 @@
 import { prisma } from "src/utils/prisma";
 import { t } from "src/utils/trpc";
-import { CreatePostRequest, DeletePostRequest } from "../schemas";
+import {
+  CreatePostRequest,
+  DeletePostRequest,
+  UpdatePostRequest,
+} from "../schemas";
 
 export const postRouter = t.router({
   all: t.procedure.query(async () => {
@@ -14,6 +18,24 @@ export const postRouter = t.router({
   }),
   create: t.procedure.input(CreatePostRequest).mutation(async ({ input }) => {
     const result = await prisma.post.create({
+      data: {
+        text: input.text,
+        type: input.type,
+        topics: {
+          connectOrCreate: input.topics.map((topic) => ({
+            where: { name: topic },
+            create: { name: topic },
+          })),
+        },
+      },
+    });
+    return result;
+  }),
+  update: t.procedure.input(UpdatePostRequest).mutation(async ({ input }) => {
+    const result = await prisma.post.update({
+      where: {
+        id: input.id,
+      },
       data: {
         text: input.text,
         type: input.type,

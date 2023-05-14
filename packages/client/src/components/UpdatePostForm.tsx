@@ -4,24 +4,28 @@ import { schemas } from "server";
 import { trpc } from "src/utils/trpc";
 import { CreateOrUpdatePostFormInner } from "./CreateOrUpdatePostFormInner";
 
-export const CreatePostForm = () => {
+export const UpdatePostForm = (props: {
+  post: schemas.Post;
+  onCancel: () => void;
+  onSubmit: () => void;
+}) => {
   const utils = trpc.useContext();
-  const postCreator = trpc.post.create.useMutation();
-  const form = useForm<schemas.CreatePostRequest>({
-    resolver: zodResolver(schemas.CreatePostRequest),
+  const postUpdater = trpc.post.create.useMutation();
+  const form = useForm<schemas.UpdatePostRequest>({
+    resolver: zodResolver(schemas.UpdatePostRequest),
     defaultValues: {
-      type: "SHORT",
-      text: "",
-      topics: [],
+      ...props.post,
+      topics: props.post.topics.map((t) => t.name),
     },
   });
 
-  const onSubmit = (data: schemas.CreatePostRequest) => {
-    postCreator.mutate(data, {
+  const onSubmit = (data: schemas.UpdatePostRequest) => {
+    postUpdater.mutate(data, {
       onSuccess: () => {
         form.reset();
         utils.post.all.invalidate();
         utils.topic.all.invalidate();
+        props.onSubmit();
       },
     });
   };
@@ -29,7 +33,8 @@ export const CreatePostForm = () => {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
       <fieldset>
-        <legend>Create a post</legend>
+        <legend>Update a post</legend>
+        <button onClick={props.onCancel}>Cancel</button>
 
         <CreateOrUpdatePostFormInner form={form} />
       </fieldset>
