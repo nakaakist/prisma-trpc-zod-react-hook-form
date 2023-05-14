@@ -50,10 +50,6 @@ export const CreateOrUpdatePostFormInner = <
         <TopicsSelector name="topics" control={control} />
       </div>
       {errors.topics?.message && <p>{errors.topics?.message}</p>}
-
-      <div>
-        <input type="submit" />
-      </div>
     </>
   );
 };

@@ -34,9 +34,12 @@ export const UpdatePostForm = (props: {
     <form onSubmit={form.handleSubmit(onSubmit)}>
       <fieldset>
         <legend>Update a post</legend>
-        <button onClick={props.onCancel}>Cancel</button>
 
         <CreateOrUpdatePostFormInner form={form} />
+        <div>
+          <input type="submit" />
+          <button onClick={props.onCancel}>Cancel</button>
+        </div>
       </fieldset>
     </form>
   );

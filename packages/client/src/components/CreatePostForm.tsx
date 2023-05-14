@@ -30,8 +30,10 @@ export const CreatePostForm = () => {
     <form onSubmit={form.handleSubmit(onSubmit)}>
       <fieldset>
         <legend>Create a post</legend>
-
         <CreateOrUpdatePostFormInner form={form} />
+        <div>
+          <input type="submit" />
+        </div>
       </fieldset>
     </form>
   );
