@@ -1,4 +1,4 @@
-import { UseFormReturn } from "react-hook-form";
+import { UseFormReturn, useFormState, useWatch } from "react-hook-form";
 import { schemas } from "server";
 import { TopicsSelector } from "./TopicsSelector";
 
@@ -11,12 +11,13 @@ export const CreateOrUpdatePostFormInner = <
 }) => {
   const {
     register,
-    watch,
     control,
-    formState: { errors },
     // workaround to handle type error (due to react hook form's limitation on generics)
     // https://github.com/react-hook-form/react-hook-form/issues/6726
   } = props.form as UseFormReturn<CreateOrUpdatePostFormParams>;
+  const type = useWatch({ control, name: "type" });
+  const { errors } = useFormState({ control });
+
   return (
     <>
       <div>
@@ -38,7 +39,7 @@ export const CreateOrUpdatePostFormInner = <
       {errors.type?.message && <p>{errors.type?.message}</p>}
 
       <div>
-        {watch("type") === "SHORT" ? (
+        {type === "SHORT" ? (
           <input type="text" placeholder="short text" {...register("text")} />
         ) : (
           <textarea placeholder="long text" {...register("text")} />
