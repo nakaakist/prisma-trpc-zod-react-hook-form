@@ -3,6 +3,8 @@ import cors from "cors";
 import { appRouter } from "./routers/app";
 
 createHTTPServer({
-  middleware: cors(),
+  middleware: cors({
+    origin: process.env.CLIENT_ORIGIN,
+  }),
   router: appRouter,
-}).listen(3333);
+}).listen(parseInt(process.env.PORT ?? "3333"));

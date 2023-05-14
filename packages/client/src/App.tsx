@@ -7,7 +7,7 @@ const queryClient = new QueryClient();
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: "http://localhost:3333",
+      url: import.meta.env.VITE_SERVER_ORIGIN,
     }),
   ],
 });
