@@ -9,6 +9,7 @@ Following is the list of features:
 - User can create/update/delete posts
 - Each post contains a text and a list of topics.
 - Post has two types, short and long. Each type has different validation rules on the length of the text.
+- No authentication is implemented.
 
 ## Run locally
 
