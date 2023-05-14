@@ -8,6 +8,7 @@
     "dev:server": "tsx watch ./src/server.ts",
     "dev:db": "docker compose up -d",
     "dev:db:stop": "docker compose down",
+    "setup:db": "prisma migrate dev",
     "build": "tsc",
     "type-check": "tsc --noEmit",
     "lint": "eslint"
